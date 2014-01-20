@@ -1,0 +1,3 @@
+[submodule "css/FatUI"]
+	path = css/FatUI
+	url = https://github.com/Daniel-Hug/FatUI.git
