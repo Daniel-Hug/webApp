@@ -1,8 +1,10 @@
+// Loop through collections:
 function each(arr, fn, scope) {
 	for (var i = 0, l = arr.length; i < l; i++) {
 		fn.call(scope, arr[i], i, arr);
 	}
 }
+
 function map(arr, fn, scope) {
 	var l = arr.length, newArr = [];
 	for (var i = 0; i < l; i++) {
@@ -16,6 +18,7 @@ function map(arr, fn, scope) {
 function qs(selector, scope) {
 	return (scope || document).querySelector(selector);
 }
+
 function qsa(selector, scope) {
 	return (scope || document).querySelectorAll(selector);
 }
@@ -25,11 +28,13 @@ function qsa(selector, scope) {
 function on(target, type, callback, useCapture) {
 	target.addEventListener(type, callback, !!useCapture);
 }
+
 function off(target, type, callback, useCapture) {
 	target.removeEventListener(type, callback, !!useCapture);
 }
 
 
+// localStorage + JSON wrapper:
 var storage = {
 	get: function(prop) {
 		return JSON.parse(localStorage.getItem(prop));
@@ -49,6 +54,7 @@ var storage = {
 };
 
 
+// Make strings safe for innerHTML and attribute insertion (templates):
 var escapeHTML = (function() {
 	var entityMap = {
 		'&': '&amp;',
@@ -88,16 +94,14 @@ var tmp = {};
 })(/{{{?(\w+)}}}?/g);
 
 
-// Loop through an array of data objects,
-// render each data object as an element with data inserted using the renderer,
-// append each element to a documentFragment, and return the documentFragment:
-function renderMultiple(arr, renderer) {
+// DOM rendering helpers:
+function renderMultiple(arr, renderer, parent) {
 	var renderedEls = map(arr, renderer);
 	var docFrag = document.createDocumentFragment();
 	for (var i = renderedEls.length; i--;) docFrag.appendChild(renderedEls[i]);
-	return docFrag;
+	if (parent) parent.appendChild(docFrag);
+	else return docFrag;
 }
-
 
 function prependAInB(newChild, parent) {
 	parent.insertBefore(newChild, parent.firstChild);
