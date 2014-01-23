@@ -67,7 +67,7 @@ var escapeHTML = (function() {
 // Templating:
 var tmp = {};
 (function(regExp) {
-	each(qsa('script[type=tmp]'), function(el) {
+	each(qsa('script[type="text/tmp"]'), function(el) {
 		var src = el.innerHTML;
 		tmp[el.id] = function(data, elName) {
 			var newSrc = src.replace(regExp, function(match, key) {
