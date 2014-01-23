@@ -21,9 +21,12 @@ function qsa(selector, scope) {
 }
 
 
-// addEventListener wrapper:
-function on(target, type, callback) {
-	target.addEventListener(type, callback, false);
+// Add and remove event listeners:
+function on(target, type, callback, useCapture) {
+	target.addEventListener(type, callback, !!useCapture);
+}
+function off(target, type, callback, useCapture) {
+	target.removeEventListener(type, callback, !!useCapture);
 }
 
 
