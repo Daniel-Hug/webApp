@@ -1,5 +1,6 @@
 A launch pad for your web app
 =============================
+
 An abstraction of commonalities i've discovered in [web][1] [apps][2] [i've][3] [built][4]. I hope you find it useful. Feel free to contribute! :)
 
 [1]: https://github.com/Daniel-Hug/Tiny-Finance
@@ -7,7 +8,9 @@ An abstraction of commonalities i've discovered in [web][1] [apps][2] [i've][3] 
 [3]: https://github.com/Daniel-Hug/tap
 [4]: https://github.com/Daniel-Hug/ToDo
 
+
 ##Simple helper functions
+
  - Easily loop through any collection with `each()` and `map()`
  - Get element(s) by css selector with `qs()` and `qsa()`
  - Add and remove event listeners with `on()` and `off()`
@@ -23,7 +26,9 @@ each(qsa('li', taskList), function(li) {
 });
 ```
 
+
 ##Complete localStorage + JSON wrapper
+
 Easily store data in the form of an object, array, boolean, string, or number. The storage object has the following available methods:
  - `get`
  - `set`
@@ -36,7 +41,8 @@ Set data:
 storage.set('taskListTitle', 'My ToDos');
 storage.set('taskList', tasks);
 ```
-And later (even after browser refresh) retrieve the data:
+
+And later (even after browser refresh), retrieve the data:
 ```
 var taskListTitle = storage.get('taskListTitle');
 var tasks = storage.get('taskList') || [];
@@ -44,8 +50,8 @@ var tasks = storage.get('taskList') || [];
 
 
 ##Templates
-Stick your templates in a script element like this one and include before app-base.js:
 
+Stick templates in script elements like this one and include before app-base.js:
 ```
 <script type="text/tmp" id="task">
 	<label>
@@ -56,35 +62,33 @@ Stick your templates in a script element like this one and include before app-ba
 ```
 
 Use like this:
-
 ```
 taskList.appendChild(tmp.task({
-	title: 'bob',
-	phone: '(555) 538 795'
+	title: 'Take out the trash',
+	done: true
 }), 'tr');
 ```
 
-or like this:
-
+…or like this:
 ```
-taskList.insertAdjacentHTML('afterbegin', tmp.contactRow({
-	name: 'bob',
-	phone: '(555) 538 795'
+taskList.insertAdjacentHTML('afterbegin', tmp.task({
+	title: 'Walk the dog',
+	done: false
 }));
 ```
 
-##Easily render your data to the DOM
-First create an element renderer:
 
+##Easily render data to the DOM
+
+First create an element renderer:
 ```
 function renderTask(data) {
 	var li = tmp.task(data, 'li');
-	return li
+	return li;
 }
 ```
 
 Then you can use the renderer to render single elements to the DOM. For example, when the user adds a new entry via a form we can use the `prependAInB()` function to put it at the top of our task list:
-
 ```
 function newEntryHandler(event) {
 	event.preventDefault();
@@ -96,8 +100,7 @@ function newEntryHandler(event) {
 on(qs('#newTaskForm'), submit, newEntryHandler);
 ```
 
-or you can use the `renderMultiple()` function to render multiple elements to the DOM efficiently in one go. For example, on page load:
-
+Or, you can use the `renderMultiple()` function to render multiple elements to the DOM efficiently in one go. For example, on page load:
 ```
 renderMultiple(tasks, renderTask, taskList);
 ```
