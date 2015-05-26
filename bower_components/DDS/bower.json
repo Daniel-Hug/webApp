@@ -1,0 +1,30 @@
+{
+  "name": "DDS",
+  "main": "DDS.js",
+  "homepage": "https://github.com/Daniel-Hug/DDS",
+  "authors": [
+    "Daniel Hug <danielthehug@gmail.com>"
+  ],
+  "description": "Data/DOM Sync with JS",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "keywords": [
+    "MVC",
+    "data",
+    "DOM"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "object-subscribe": "~2.2.2",
+    "subscribable.js": "2.0.1"
+  }
+}

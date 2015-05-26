@@ -1,0 +1,23 @@
+{
+  "name": "DOM-Builder",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Daniel-Hug/DOM-Builder",
+  "authors": [
+    "Daniel Hug"
+  ],
+  "main": "DOM-Builder.js",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "_release": "0.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.0",
+    "commit": "6f75a21269e3c6a7e9b01f69c5ae491ae3666db1"
+  },
+  "_source": "git://github.com/Daniel-Hug/DOM-Builder.git",
+  "_target": "~0.0.0",
+  "_originalSource": "DOM-Builder",
+  "_direct": true
+}

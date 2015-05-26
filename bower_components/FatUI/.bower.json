@@ -1,0 +1,22 @@
+{
+  "name": "FatUI",
+  "version": "1.0.1",
+  "homepage": "https://github.com/Daniel-Hug/FatUI",
+  "authors": [
+    "Daniel Hug"
+  ],
+  "main": "FatUI.css",
+  "ignore": [
+    "node_modules"
+  ],
+  "_release": "1.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.1",
+    "commit": "8a07f0a60d3cea8c21ecc6da8857c7f298caeb3a"
+  },
+  "_source": "git://github.com/Daniel-Hug/FatUI.git",
+  "_target": "~1.0.1",
+  "_originalSource": "FatUI",
+  "_direct": true
+}

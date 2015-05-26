@@ -1,0 +1,15 @@
+body {
+	font-family: sans-serif;
+}
+
+h1 {
+	font-weight: normal;
+}
+
+.block {
+	display: block;
+}
+
+.buffer-right {
+	margin-right: 1em;
+}

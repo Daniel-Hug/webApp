@@ -1,0 +1,8 @@
+{
+  "name": "FatUI",
+  "dependencies": {
+    "DDS": "~1.3.1",
+    "FatUI": "~1.0.1",
+    "DOM-Builder": "~0.0.0"
+  }
+}

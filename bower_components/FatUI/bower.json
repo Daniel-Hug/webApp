@@ -1,0 +1,12 @@
+{
+  "name": "FatUI",
+  "version": "1.0.1",
+  "homepage": "https://github.com/Daniel-Hug/FatUI",
+  "authors": [
+    "Daniel Hug"
+  ],
+  "main": "FatUI.css",
+  "ignore": [
+    "node_modules"
+  ]
+}

@@ -1,30 +1,56 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title></title>
-		<meta name="description" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Guestbook</title>
+	<meta name="description" content="web app boilerplate">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<!-- App Icons specified in case they're not in root dir (e.g. gh-pages) -->
-		<link rel="shortcut icon" href="favicon.ico">
-		<link rel="shortcut icon" sizes="196x196" href="app-icon-196.png">
-		<link rel="apple-touch-icon" href="apple-touch-icon-precomposed.png">
+	<!-- App Icons specified in case they're not in root dir (e.g. gh-pages) -->
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="shortcut icon" sizes="196x196" href="app-icon-196.png">
+	<link rel="apple-touch-icon" href="apple-touch-icon-precomposed.png">
 
-		<!-- CSS -->
-		<link rel="stylesheet" href="css/FatUI/FatUI.css">
-		<link rel="stylesheet" href="css/app.css">
-	</head>
-	<body>
-		<h1>Hello World!</h1>
+	<!-- CSS -->
+	<link rel="stylesheet" href="bower_components/FatUI/FatUI.css">
+	<link rel="stylesheet" href="src/css/app.css">
+</head>
+<body>
+	<h1>Guestbook</h1>
 
-		<!-- Templates -->
-		<script type="text/tmp" id="tmpID"></script>
+	<form id="form-add-person">
+		<label for="firstName" class="block">Name</label>
+		<input type="text" name="firstName" class="buffer-right"><button>Add</button>
+	</form>
 
-		<!-- JS -->
-		<script src="js/app-base.js"></script>
-		<script src="js/helpers.js"></script>
-		<script src="js/app.js"></script>
-	</body>
+
+	<ul id="people"></ul>
+
+
+	<!-- JS -->
+
+		<!-- utilities -->
+
+			<!-- DDS -->
+			<script src="bower_components/object-subscribe/obj.js"></script>
+			<script src="bower_components/subscribable.js/subscribable.js"></script>
+			<script src="bower_components/DDS/DDS.js"></script>
+
+			<!-- DOM builder -->
+			<script src="bower_components/DOM-Builder/DOM-Builder.js"></script>
+
+
+		<!-- helper functions -->
+		<script src="src/js/helpers.js"></script>
+
+		<!-- app & model setup -->
+		<script src="src/js/init.js"></script>
+
+		<!-- views -->
+
+			<!-- people -->
+			<script src="src/views/people/person.js"></script>
+			<script src="src/views/people/people.js"></script>
+</body>
 </html>
