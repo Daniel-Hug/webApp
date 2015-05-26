@@ -1,26 +1,29 @@
 A launch pad for your web app
 =============================
 
-An abstraction of commonalities i've discovered in [web][1] [apps][2] [i've][3] [built][4]. I hope you find it useful. Feel free to contribute! :)
+An abstraction of commonalities i've discovered in [web][1] [apps][2] [i've][3] [built][4]. Includes [DDS][5], [FatUI][6], and [DOM-Builder][7] via Bower.
 
 [1]: https://github.com/Daniel-Hug/Tiny-Finance
 [2]: https://github.com/Daniel-Hug/mileage
 [3]: https://github.com/Daniel-Hug/tap
 [4]: https://github.com/Daniel-Hug/ToDo
+[5]: https://github.com/Daniel-Hug/DDS
+[6]: https://github.com/Daniel-Hug/FatUI
+[7]: https://github.com/Daniel-Hug/DOM-Builder
 
 
 ##Simple helper functions
 
- - Easily loop through any collection with `each()` and `map()`
- - Get element(s) by css selector with `qs()` and `qsa()`
- - Add and remove event listeners with `on()` and `off()`
+ - Easily loop through any collection with `h.each()` and `h.map()`
+ - Get element(s) by css selector with `h.qs()` and `h.qsa()`
+ - Add and remove event listeners with `h.on()` and `h.off()`
 
-```
-var taskList = qs('#tasks');
-each(qsa('li', taskList), function(li) {
-	var checkbox = qs('input[type=checkbox]', li);
-	on(checkbox, 'click', function taskComplete() {
-		off(checkbox, 'click', taskComplete);
+```js
+var taskList = h.qs('#tasks');
+h.each(h.qsa('li', taskList), function(li) {
+	var checkbox = h.qs('input[type=checkbox]', li);
+	h.on(checkbox, 'click', function taskComplete() {
+		h.off(checkbox, 'click', taskComplete);
 		taskList.removeChild(li);
 	});
 });
@@ -37,70 +40,39 @@ Easily store data in the form of an object, array, boolean, string, or number. T
  - `clear`
 
 Set data:
-```
+```js
 storage.set('taskListTitle', 'My ToDos');
 storage.set('taskList', tasks);
 ```
 
 And later (even after browser refresh), retrieve the data:
-```
+```js
 var taskListTitle = storage.get('taskListTitle');
 var tasks = storage.get('taskList') || [];
 ```
 
 
-##Templates
-
-Stick templates in script elements like this one and include before app-base.js:
-```
-<script type="text/tmp" id="task">
-	<label>
-		<input type="checkbox" checked="{{done}}">
-		<span contenteditable="true">{{title}}</span>
-	</label>
-</script>
-```
-
-Use like this:
-```
-taskList.appendChild(tmp.task({
-	title: 'Take out the trash',
-	done: true
-}), 'tr');
-```
-
-…or like this:
-```
-taskList.insertAdjacentHTML('afterbegin', tmp.task({
-	title: 'Walk the dog',
-	done: false
-}));
-```
-
-
-##Easily render data to the DOM
+##Easily render data to the DOM with [DOM-Builder][7]
 
 First create an element renderer:
 ```
-function renderTask(data) {
-	var li = tmp.task(data, 'li');
-	return li;
+function renderTask(task) {
+	return DOM.buildNode({ el: 'li', kid: task.title });
 }
 ```
 
-Then you can use the renderer to render single elements to the DOM. For example, when the user adds a new entry via a form we can use the `prependAInB()` function to put it at the top of our task list:
+Then you can use the renderer to render elements to the DOM. For example, when the user adds a new entry via a form we can use the `prependAInB()` function to put it at the top of our task list:
 ```
-function newEntryHandler(event) {
+on(qs('#newTaskForm'), submit, function newEntryHandler(event) {
 	event.preventDefault();
 	var taskData = {this.title, done: false};
-	prependAInB(renderTask(taskData), taskList);
+	h.prependAInB(renderTask(taskData), taskList);
 	tasks.push(taskData);
-	storage.set('taskList', tasks);
-}
-on(qs('#newTaskForm'), submit, newEntryHandler);
+	h.storage.set('taskList', tasks);
+});
 ```
 
 Or, you can use the `renderMultiple()` function to render multiple elements to the DOM efficiently in one go. For example, on page load:
 ```
-renderMultiple(tasks, renderTask, taskList);
+h.renderMultiple(tasks, renderTask, taskList);
 ```
